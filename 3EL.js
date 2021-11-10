@@ -29,18 +29,28 @@ function checkRowsAndCols(line) {
     }
 }
 
-function resetGame() {
-    for (boardSection of board) {
-        boardSection.map((tile) => tile.innerHTML = '');
-    }
-}
-
 let turn = 0;
 let gameData = { winner: undefined, clearCells: 8, xRecord: 0, oRecord: 0 };
 let frontBoard = document.getElementById('gameboard');
 let frontScore = document.getElementById('marker');
 let winnerAnnouncement = document.getElementById('winner-announcement');
 let tieAnnouncement = document.getElementById('tie-announcement')
+
+function closeMessage() {
+    winnerAnnouncement.classList.replace('visible-message-output', 'not-visible-output');
+    tieAnnouncement.classList.replace('visible-message-output', 'not-visible-output');
+    document.getElementById('champion').remove();
+    document.querySelector('header').appendChild(frontScore)
+}
+
+function resetGame() {
+    for (boardSection of board) {
+        boardSection.map((tile) => {tile.innerHTML = ''; tile.classList.remove('Xtile'); tile.classList.remove('Otile')});
+    }
+    gameData.clearCells = 8;
+    gameData.winner = undefined;
+    closeMessage()
+}
 
 function resetScores() {
     gameData.xRecord = 0;
@@ -52,18 +62,27 @@ function resetScores() {
 
 function gameplay(tile) {
 
-    //prevents users from selecting an already filled tile;
-    if ((tile.innerHTML == 'X') || (tile.innerHTML == 'O')) {
-        alert('No puedes seleccionar un espacio que ya está usado');
-        return false
+    if (gameData.winner != undefined) {
+        alert('Reinicia la partida para volver a jugar');
+        return false;
     }
 
+    //Prevents users from selecting an already filled tile;
+    if ((tile.innerHTML == 'X') || (tile.innerHTML == 'O')) {
+        alert('No puedes seleccionar un espacio que ya está usado');
+        return false;
+    }
 
+    //Decides whose turn it is;
+    if (turn % 2 == 0) {
+        tile.innerHTML = 'X'
+        tile.classList.add('Xtile');
+    } else {
+        tile.innerHTML = 'O'
+        tile.classList.add('Otile')
+    }
 
-
-    (turn % 2 == 0) ? (tile.innerHTML = 'X') : (tile.innerHTML = 'O');
-
-
+    //Calls checkRowsAndCols on every section of the board looking for three equal cells in a line;
     for (boardSection of board) {
         let result = checkRowsAndCols(boardSection);
         if (result != undefined) {
@@ -72,24 +91,29 @@ function gameplay(tile) {
         }
     }
 
+    //Checks if there's a winner yet. If it's the case displays winner announcement;
     if (gameData.winner != undefined) {
         gameData.winner == 'X' ? gameData.xRecord++ : gameData.oRecord++;
 
         let winnerMessage = document.createElement('p');
-        winnerMessage.innerHTML = `${gameData.winner}`;
+        winnerMessage.innerHTML = gameData.winner;
+        winnerMessage.innerHTML == 'X' ? winnerMessage.classList.add('Xtile') : winnerMessage.classList.add('Otile');
+        winnerMessage.setAttribute('id', 'champion')
         document.getElementById('winner').appendChild(winnerMessage);
         winnerAnnouncement.appendChild(frontScore);
         winnerAnnouncement.classList.replace('not-visible-output', 'visible-message-output')
+
 
         document.getElementById('X-record').innerHTML = gameData.xRecord;
         document.getElementById('O-record').innerHTML = gameData.oRecord;
     }
 
-    //Checks if the game ended in tie;
+    //Checks if the game ended in tie. If it's the case displays tie announcement;
     if ((gameData.clearCells == 0) && (gameData.winner == undefined)) {
         tieAnnouncement.classList.replace('not-visible-output', 'visible-message-output');
         tieAnnouncement.appendChild(frontScore);
     }
+
     gameData.clearCells--;
     turn++;
 }
