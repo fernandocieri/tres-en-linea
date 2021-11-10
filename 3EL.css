@@ -1,6 +1,153 @@
-button {
-    width: 100px;
-    height: 100px;
+body {
+    font-size: 30px;
+    background-color: #0f0e17;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+aside img {
+    width: 13%;
+    height: 13%;
+}
+
+#logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+h1 {
+    color: #fffffe;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+}
+
+sub {
+    margin-top: 0px;
+    padding-top: 0px;
+    color: #fffffe;
+    font-weight: bold;
+}
+
+#marker {
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.score {
+    width: 35%;
+    border: 4px solid;
+    padding: 2%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#X {
+    border-color: #ff8906;
+    color: #ff8906;
+}
+
+#O {
+    border-color: #e53170;
+    color: #e53170;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+aside {
+    width: 38%;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+aside button, dialog button {
+    padding: 2%;
+    font-size: 75%;
+    font-weight: bold;
+    color: #f25f4c;
+    background-color: #0f0e17;
+    border: 3px solid #f25f4c;
+}
+
+table {
+    width: 35%;
+    height: 80%;
+    padding: 0;
+    background-color: #fffffe;
+    align-self: center;
+}
+
+tr {
+    margin: 0px;
+}
+
+td {
+    width: 33%;
+    height: 150px;
+    margin: 0px;
+}
+
+td button {
+    background-color: #0f0e17;
+    font-size: 100px;
+    width: 100%;
+    height: 100%;
+}
+
+td button:active {
+    border-style: inherit;
+}
+
+.Xtile {
+    color: #ff8906;
+}
+
+.Otile {
+    color: #e53170;
+}
+
+#champion {
+    font-size: 100px;
+    margin: 1%;
+}
+
+#winner-announcement, #tie-announcement {
+    border: 5px solid #f25f4c;
+    color: #a7a9be;
+    position: absolute;
+    background-color: #0f0e17f1;
+    width: 40%;
+    height: 60%;
+}
+
+#winner {
+    padding: 0px;
+    margin: 0px;
+}
+
+p {
+    font-size: 100%;
+    margin-bottom: 3%;
 }
 
 .not-visible-output {
@@ -8,5 +155,29 @@ button {
 }
 
 .visible-message-output {
-    display: inline;
+    font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.visible-message-output #marker {
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.visible-message-output .score {
+    width: 13%;
+    justify-content: space-evenly;
+}
+
+
+.window-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.window-top button {
+    font-size: 80%;
 }
