@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="3EL.css">
-    <title>Tres en yaya</title>
+    <title>Tres en Raya</title>
 </head>
 
 <body>
     <header>
-        <h1>Tres en Yaya</h1>
-        <img src="" alt="">
+        <div id="logo">
+            <h1>Tres en Raya </h1>
+            <sub>○×ゲーム</sub>
+        </div>
         <div id="marker">
             <div class="score" id="X">
                 <div class="player">X</div>
@@ -29,7 +31,8 @@
 
         <aside>
             <button onclick="resetGame()">Reiniciar Partida</button>
-            <button onclick="resetScores()">Restablecer puntajes</button>
+            <img src="tic-tac-toe.png" alt="">
+            <button onclick="resetScores()">Reiniciar Puntajes</button>
         </aside>
 
         <table id="gameboard">
@@ -53,7 +56,11 @@
         </table>
 
         <dialog id="winner-announcement" class="not-visible-output">
-            <button>cerrar</button>
+            <div class="window-top">
+                <button onclick="resetGame()">volver a jugar</button>
+                <button onclick="closeMessage()">cerrar</button>
+            </div>
+
             <p>El ganador es:</p>
             <div id="winner">
 
@@ -62,7 +69,11 @@
         </dialog>
 
         <dialog id="tie-announcement" class="not-visible-output">
-            <button>cerrar</button>
+            <div class="window-top">
+                <button onclick="resetGame()">volver a jugar</button>
+                <button onclick="closeMessage()">cerrar</button>
+            </div>
+
             <p>¡Es un empate!</p>
             <p>el puntaje total es:</p>
         </dialog>
