@@ -1,0 +1,12 @@
+button {
+    width: 100px;
+    height: 100px;
+}
+
+.not-visible-output {
+    display: none;
+}
+
+.visible-message-output {
+    display: inline;
+}
