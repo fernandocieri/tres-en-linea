@@ -13,24 +13,47 @@
     <header>
         <h1>Tres en Yaya</h1>
         <img src="" alt="">
+        <div id="marker">
+            <div class="score" id="X">
+                <div class="player">X</div>
+                <div id="X-record">0</div>
+            </div>
+
+            <div class="score" id="O">
+                <div class="player">O</div>
+                <div id="O-record">0</div>
+            </div>
+        </div>
     </header>
     <main>
-        
-        <button onclick="gameplay(this)" class="firstrow firstcell"></button>
-        <button onclick="gameplay(this)" class="firstrow secondcell"></button>
-        <button onclick="gameplay(this)" class="firstrow thirdcell"></button>
 
-        <button onclick="gameplay(this)" class="secondrow firstcell"></button>
-        <button onclick="gameplay(this)" class="secondrow secondcell"></button>
-        <button onclick="gameplay(this)" class="secondrow thirdcell"></button>
+        <aside>
+            <button onclick="resetGame()">Reiniciar Partida</button>
+            <button onclick="resetScores()">Restablecer puntajes</button>
+        </aside>
 
-        <button onclick="gameplay(this)" class="thirdrow firstcell"></button>
-        <button onclick="gameplay(this)" class="thirdrow secondcell"></button>
-        <button onclick="gameplay(this)" class="thirdrow thirdcell"></button>
-        
+        <table id="gameboard">
+            <tr id="first-row">
+                <td><button onclick="gameplay(this)" class="firstrow firstcell"></button></td>
+                <td><button onclick="gameplay(this)" class="firstrow secondcell"></button></td>
+                <td><button onclick="gameplay(this)" class="firstrow thirdcell"></button></td>
+            </tr>
+
+            <tr id="second-row">
+                <td><button onclick="gameplay(this)" class="secondrow firstcell"></button></td>
+                <td><button onclick="gameplay(this)" class="secondrow secondcell"></button></td>
+                <td><button onclick="gameplay(this)" class="secondrow thirdcell"></button></td>
+            </tr>
+
+            <tr id="third-row">
+                <td><button onclick="gameplay(this)" class="thirdrow firstcell"></button></td>
+                <td><button onclick="gameplay(this)" class="thirdrow secondcell"></button></td>
+                <td><button onclick="gameplay(this)" class="thirdrow thirdcell"></button></td>
+            </tr>
+        </table>
     </main>
 </body>
 
-<script src="3EL test.js"></script>
+<script src="3EL.js"></script>
 
 </html>
