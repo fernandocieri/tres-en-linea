@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -10,11 +10,13 @@
 </head>
 
 <body>
+
     <header>
         <div id="logo">
             <h1>Tres en Raya </h1>
             <sub>○×ゲーム</sub>
         </div>
+
         <div id="marker">
             <div class="score" id="X">
                 <div class="player">X</div>
@@ -26,14 +28,15 @@
                 <div id="O-record">0</div>
             </div>
         </div>
-    </header>
-    <main>
 
-        <aside>
+    </header>
+
+    <main>
+        <section>
             <button onclick="resetGame()">Reiniciar Partida</button>
             <img src="tic-tac-toe.png" alt="">
             <button onclick="resetScores()">Reiniciar Puntajes</button>
-        </aside>
+        </section>
 
         <table id="gameboard">
             <tr id="first-row">
@@ -55,29 +58,44 @@
             </tr>
         </table>
 
-        <dialog id="winner-announcement" class="not-visible-output">
-            <div class="window-top">
-                <button onclick="resetGame()">volver a jugar</button>
-                <button onclick="closeMessage()">cerrar</button>
-            </div>
+        <dialog id="winner-announcement">
+            <div class="window">
+                <div class="window-header">
+                    <button onclick="resetGame()">volver a jugar</button>
+                    <button onclick="closeMessage()">cerrar</button>
+                </div>
 
-            <p>El ganador es:</p>
-            <div id="winner">
+                <p>El ganador es:</p>
+                <div id="winner">
+
+                </div>
+                <p>así va el marcador:</p>
 
             </div>
-            <p>... Y el puntaje total va así:</p>
         </dialog>
 
-        <dialog id="tie-announcement" class="not-visible-output">
-            <div class="window-top">
-                <button onclick="resetGame()">volver a jugar</button>
-                <button onclick="closeMessage()">cerrar</button>
-            </div>
+        <dialog id="tie-announcement">
+            <div class="window">
+                <div class="window-header">
+                    <button onclick="resetGame()">volver a jugar</button>
+                    <button onclick="closeMessage()">cerrar</button>
+                </div>
 
-            <p>¡Es un empate!</p>
-            <p>el puntaje total es:</p>
+                <p>¡Es un empate!</p>
+                <p>así va el marcador:</p>
+
+            </div>
         </dialog>
     </main>
+    <footer>
+        <form>
+            <label for="player-order">el primer turno es de</label>
+            <select name="player-order" id="player1" onchange="selectFirstPlayer()">
+                <option value="X" class="Xtile">X</option>
+                <option value="O" class="Otile">O</option>
+            </select>
+        </form>
+    </footer>
 </body>
 
 <script src="3EL.js"></script>
