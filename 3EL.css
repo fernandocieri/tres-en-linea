@@ -6,16 +6,11 @@ body {
 
 header {
     margin-top: 1%;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-}
-
-aside img {
-    width: 13%;
-    height: 13%;
 }
 
 #logo {
@@ -26,10 +21,10 @@ aside img {
 }
 
 h1 {
-    color: #fffffe;
     margin-bottom: 0px;
     margin-top: 0px;
     padding-bottom: 0px;
+    color: #fffffe;
 }
 
 sub {
@@ -68,19 +63,25 @@ sub {
 
 
 main {
+    margin-bottom: 1%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-aside {
+section {
     width: 38%;
     margin-bottom: 15px;
     display: flex;
     justify-content: space-around;
 }
 
-aside button, dialog button {
+section img {
+    width: 13%;
+    height: 13%;
+}
+
+section button, dialog button {
     padding: 2%;
     font-size: 75%;
     font-weight: bold;
@@ -102,7 +103,7 @@ tr {
 }
 
 td {
-    width: 33%;
+    width: 32%;
     height: 150px;
     margin: 0px;
 }
@@ -114,10 +115,6 @@ td button {
     height: 100%;
 }
 
-td button:active {
-    border-style: inherit;
-}
-
 .Xtile {
     color: #ff8906;
 }
@@ -126,18 +123,37 @@ td button:active {
     color: #e53170;
 }
 
+dialog {
+    height: 60%;
+    width: 40%;
+    background-color: #0f0e17e0;
+    border: 5px solid #f25f4c;
+    font-size: 100%;
+    color: #a7a9be;
+    position: absolute;
+    
+}
+
+dialog #marker {
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+dialog .score {
+    width: 13%;
+    justify-content: space-evenly;
+}
+
+.window {
+    font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
 #champion {
     font-size: 100px;
     margin: 1%;
-}
-
-#winner-announcement, #tie-announcement {
-    border: 5px solid #f25f4c;
-    color: #a7a9be;
-    position: absolute;
-    background-color: #0f0e17f1;
-    width: 40%;
-    height: 60%;
 }
 
 #winner {
@@ -148,36 +164,51 @@ td button:active {
 p {
     font-size: 100%;
     margin-bottom: 3%;
-}
-
-.not-visible-output {
-    display: none;
-}
-
-.visible-message-output {
-    font-size: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-self: center;
 }
 
-.visible-message-output #marker {
-    width: 100%;
-    justify-content: space-evenly;
-}
-
-.visible-message-output .score {
-    width: 13%;
-    justify-content: space-evenly;
-}
-
-
-.window-top {
+.window-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.window-top button {
+.window-header button {
     font-size: 80%;
+}
+
+footer {
+    width: 100%;
+    border-top: 0%;
+    padding-top: 0%;
+    color: #fffffe;
+    font-size:100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer button {
+    height: 30px;
+    width: 70px;
+    color: #fffffe;
+    font-weight: bold;
+    background-color: #0f0e17;
+    border: 3px solid #fffffe;
+}
+
+select {
+    height: 30px;
+    width: 60px;
+    background-color: #0f0e17;
+    border: 3px solid #f25f4c;
+    color:#f25f4c;
+    font-weight: bold;
+    font-size: 75%;
+}
+
+option {
+    background-color: #0f0e17;
+    font-weight: bold;
 }
