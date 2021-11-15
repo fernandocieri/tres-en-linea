@@ -12,32 +12,27 @@ let rightLeftDiagonal = [document.querySelector('.firstrow.thirdcell'), document
 let board = [firstRow, secondRow, thirdRow, firstColumn, secondColumn, thirdColumn, leftRightDiagonal, rightLeftDiagonal];
 
 let gameData = { winner: undefined, turn: 0, clearCells: 9, xRecord: 0, oRecord: 0 };
-//let frontBoard = document.getElementById('gameboard');
 const frontScore = document.getElementById('marker');
+let selectPlayer = document.getElementById('player1');
 let winnerAnnouncement = document.getElementById('winner-announcement');
-let tieAnnouncement = document.getElementById('tie-announcement')
+let tieAnnouncement = document.getElementById('tie-announcement');
 
-//Checks if there are three equal values in one row, column or diagonal;
-function checkRowsColsDiagonals(line) {
-    let equalCells = 0;
-    let player;
-    for (curr = 1, prev = 0; curr < line.length; curr++, prev++) {
-        if ((line[prev].innerHTML != '') && (line[prev].innerHTML == line[curr].innerHTML)) {
-            equalCells++;
-            player = line[prev].innerHTML;
-        }
-        if (equalCells == 2) {
-            return player;
-        }
-    }
-}
 
 function closeMessage() {
-    winnerAnnouncement.classList.replace('visible-message-output', 'not-visible-output');
-    tieAnnouncement.classList.replace('visible-message-output', 'not-visible-output');
+    winnerAnnouncement.removeAttribute('open');
+    tieAnnouncement.removeAttribute('open');
     let champion = document.getElementById('champion');
     if (champion) { champion.remove() };
-    document.querySelector('header').appendChild(frontScore)
+    document.querySelector('header').appendChild(frontScore);
+}
+
+function selectFirstPlayer() {
+    if (gameData.clearCells == 9) {
+        (selectPlayer.value == 'X' ? gameData.turn = 0 : gameData.turn = 1);
+    } else {
+        (selectPlayer.value == 'X' ? selectPlayer.value = 'O' : selectPlayer.value = 'X');
+        alert('No puedes hacer esto ahora. Termina o reinicia la partida e inténtalo de nuevo.');
+    }
 }
 
 function resetGame() {
@@ -54,39 +49,56 @@ function resetGame() {
     gameData.turn = 0;
     gameData.clearCells = 9;
     gameData.winner = undefined;
+    selectFirstPlayer();
     closeMessage();
 }
 
-resetScores = () => {
+function resetScores() {
     gameData.xRecord = 0;
     gameData.oRecord = 0;
-
+    
     document.getElementById('X-record').innerHTML = gameData.xRecord;
     document.getElementById('O-record').innerHTML = gameData.oRecord;
 }
 
+//Checks if there are three equal values in one row, column or diagonal;
+function checkRowsColsDiagonals(line) {
+    let equalCells = 0;
+    let player;
+    for (curr = 1, prev = 0; curr < line.length; curr++, prev++) {
+        if ((line[prev].innerHTML != '') && (line[prev].innerHTML == line[curr].innerHTML)) {
+            equalCells++;
+            player = line[prev].innerHTML;
+        }
+        if (equalCells >= 2) {
+            return player;
+        }
+    }
+}
+
 //Checks if there's a winner yet. If so, displays winner-announcement. Otherwise checks if the game ended in tie. If so, displays tie-announcement;
-WinnerOrTieEvents = () => {
+function WinnerOrTieEvents() {
     if (gameData.winner != undefined) {
         gameData.winner == 'X' ? gameData.xRecord++ : gameData.oRecord++;
 
         let winnerMessage = document.createElement('p');
         winnerMessage.innerHTML = gameData.winner;
         winnerMessage.innerHTML == 'X' ? winnerMessage.classList.add('Xtile') : winnerMessage.classList.add('Otile');
-        winnerMessage.setAttribute('id', 'champion')
+        winnerMessage.setAttribute('id', 'champion');
         document.getElementById('winner').appendChild(winnerMessage);
-        winnerAnnouncement.appendChild(frontScore);
-        winnerAnnouncement.classList.replace('not-visible-output', 'visible-message-output')
-
 
         document.getElementById('X-record').innerHTML = gameData.xRecord;
         document.getElementById('O-record').innerHTML = gameData.oRecord;
+        winnerAnnouncement.appendChild(frontScore);
+
+        winnerAnnouncement.setAttribute('open', '');
 
     } else if ((gameData.clearCells == 0) && (gameData.winner == undefined)) {
-        tieAnnouncement.classList.replace('not-visible-output', 'visible-message-output');
         tieAnnouncement.appendChild(frontScore);
+        tieAnnouncement.setAttribute('open', '');
     }
 }
+
 
 function gameplay(tile) {
 
@@ -110,15 +122,8 @@ function gameplay(tile) {
         tile.classList.add('Otile')
     }
 
-    //Row, column and/or diagonal where tile is place;
-    let tilePosition = [];
-
-    //Iterates through board to find the position of the tile;
-    for (boardSection of board) {
-        if (boardSection.includes(tile)) {
-            tilePosition.push(boardSection);
-        }
-    }
+    //Filters board to find the position of the tile;
+    let tilePosition = board.filter((boardSection) => {return boardSection.includes(tile)})
 
     //Iterates over tilePosition calling checkRowsColsDiagonals, looking for a line with three equal tiles;
     for (line of tilePosition) {
